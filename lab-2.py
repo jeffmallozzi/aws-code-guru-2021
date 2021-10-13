@@ -1,4 +1,4 @@
-import config
+import lab_config
 
 def main():
     ask_again = True
@@ -12,13 +12,13 @@ def main():
             ask_again = True
         else:
             ask_again = False
-            print("You performed " + str(config.operations_count) + " operations, bye!")
+            print("You performed " + str(lab_config.operations_count) + " operations, bye!")
 
 
 def perform_division(a,b):
 
     try:
-        config.operations_count += 1
+        lab_config.operations_count += 1
         return int(a)/int(b)
     except ZeroDivisionError as e:
         return(e)
