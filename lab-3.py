@@ -13,9 +13,9 @@ def main(argv):
     upload_output_to_S3(log_file_name)
 
 def kickoff_subprocess(cmd, log_file_name):
-    process = subprocess.call(shlex.join(cmd), shell=True)
+    process = subprocess.call([shlex.quote(x) for x in cmd], shell=True)
     with open(log_file_name, "a+") as file:
-        timestamp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+        timestamp = datetime.datetime.now(datetime.timezone.utc).strftime("%m/%d/%Y, %H:%M:%S")
         output = timestamp + " Command: "+ cmd[0] + " | Return Code: " + str(process) + "\n"
         file.write(output)
 
